@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>BrainFizz Energy</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat', sans-serif;
+}
+
+body{
+  background: radial-gradient(circle at top, #7a00ff 0%, #120018 55%, #000 100%);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+/* PARTICULAS SÓ NA HERO */
+.hero::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity:0.05; /* bem suave, não atrapalha leitura */
+  animation: moveBG 40s linear infinite;
+  z-index:0;
+}
+
+/* CORE ANIMADO */
+.core{
+  position:relative;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background: radial-gradient(circle at center, #c084ff, #7a00ff, transparent 70%);
+  animation: spin 12s linear infinite;
+  box-shadow: 0 0 50px #7a00ff, 0 0 100px #c084ff inset;
+  overflow:hidden;
+  z-index:1;
+}
+
+.core::before,
+.core::after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  border-radius:50%;
+  border:2px solid rgba(168,85,255,0.4);
+  animation:pulse 3s ease-in-out infinite;
+}
+
+.core::after{
+  inset:-70px;
+  opacity:0.4;
+  animation-delay:1.5s;
+}
+
+/* LOGO */
+.logo{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:float 3s ease-in-out infinite;
+  z-index:2;
+}
+
+.logo img{
+  width:220px;
+  filter:drop-shadow(0 0 40px #fff) drop-shadow(0 0 80px #c084ff);
+}
+
+/* INFO SECTION LIMPA */
+.info{
+  max-width:1000px;
+  margin:0 auto;
+  padding:120px 40px 80px;
+  position:relative;
+  z-index:1;
+  background: rgba(0,0,0,0.3); /* leve overlay pra leitura */
+  border-radius:20px;
+}
+
+/* TEXTOS */
+.info h2{
+  font-size:42px;
+  font-weight:900;
+  margin-bottom:50px;
+  text-align:center;
+}
+
+.block{
+  margin-bottom:45px;
+}
+
+.block h3{
+  font-size:24px;
+  margin-bottom:12px;
+  color:#c084ff;
+}
+
+.block p{
+  line-height:1.7;
+  opacity:0.9;
+}
+
+.block ul{
+  list-style:none;
+}
+
+.block ul li{
+  padding-left:18px;
+  margin-bottom:8px;
+  position:relative;
+  opacity:0.9;
+}
+
+.block ul li::before{
+  content:"⚡";
+  position:absolute;
+  left:0;
+  color:#c084ff;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+  margin-top:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:25px;
+  border-radius:20px;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 0 50px rgba(168,85,255,0.6), 0 0 100px rgba(200,132,255,0.2) inset;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  font-size:14px;
+  opacity:0.6;
+}
+
+/* ANIMAÇÕES */
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:0.4;}
+  50%{transform:scale(1.15);opacity:0.8;}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+}
+
+@keyframes moveBG{
+  from{background-position:0 0;}
+  to{background-position:1000px 1000px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="core">
+    <div class="logo">
+      <img src="brainfizz.png" alt="BrainFizz">
+    </div>
+  </div>
+</section>
+
+<section class="info">
+
+  <h2>Sobre a BrainFizz</h2>
+
+  <div class="block">
+    <h3>Setor</h3>
+    <p>Bebidas • Entretenimento • Inovação</p>
+  </div>
+
+  <div class="block">
+    <h3>Inovação</h3>
+    <ul>
+      <li>Bebidas energéticas interativas</li>
+      <li>Bebidas que mudam de cor ao toque</li>
+      <li>QR codes que dão acesso a jogos, quizzes e desafios digitais</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>Como funciona o produto</h3>
+    <p>
+      A <strong>BrainFizz</strong> funciona de forma interativa e inovadora.
+      A bebida muda de cor ao ser tocada, tornando cada consumo único.
+      Cada embalagem possui um QR code que, ao ser lido com o telemóvel,
+      dá acesso a jogos, quizzes e desafios digitais, tornando a experiência divertida e envolvente.
+    </p>
+  </div>
+
+  <div class="block">
+    <h3>Produtos principais</h3>
+    <div class="grid">
+      <div class="card">🍒 Cereja</div>
+      <div class="card">🍋 Raspa de Limão</div>
+      <div class="card">🥭 Frutas Exóticas</div>
+      <div class="card">🌰 Inspiração em frutas como o Durião, que estimula a criatividade</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Benefícios</h3>
+    <ul>
+      <li>Ajuda no foco e na concentração</li>
+      <li>Aumenta a energia e a disposição</li>
+      <li>Estimula a criatividade</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>Público-alvo</h3>
+    <p>
+      O público-alvo da BrainFizz são jovens adolescentes.
+      Destina-se principalmente a estudantes e pessoas criativas,
+      interessadas em tecnologia, inovação e novas experiências.
+    </p>
+  </div>
+
+  <div class="block">
+    <h3>Conclusão</h3>
+    <p>
+      A BrainFizz é uma empresa criativa e inovadora que combina bebidas,
+      tecnologia e entretenimento. Destaca-se por transformar uma simples bebida
+      numa experiência interativa, diferente e apelativa para os jovens.
+    </p>
+  </div>
+
+</section>
+
+<footer>
+  Lisboa, Portugal.
+</footer>
+
+</body>
+</html>
