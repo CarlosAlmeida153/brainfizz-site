@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<title>Segurança Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<nav>
+<strong>Segurança Digital</strong>
+<div>
+<a href="index.html">Home</a>
+<a href="malwere.html">Malware</a>
+<a href="antivirus.html">Antivírus</a>
+<a href="links.html">Links</a>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>Segurança Digital</h1>
+<p>Entende as ameaças. Protege os teus dados.</p>
+</div>
+</section>
+
+
+
+<
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  
+  const canvas = document.createElement('canvas');
+  canvas.id="particleCanvas";
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  for(let i=0;i<150;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*2+1,
+      dx: (Math.random()-0.5)*0.5,
+      dy: (Math.random()-0.5)*0.5
+    });
+  }
+
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(56,189,248,0.5)';
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if(p.x>canvas.width)p.x=0;
+      if(p.x<0)p.x=canvas.width;
+      if(p.y>canvas.height)p.y=0;
+      if(p.y<0)p.y=canvas.height;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+  window.addEventListener('resize', ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+ 
+  anime.timeline({loop:false})
+  .add({
+    targets:'.hero',
+    translateY:[40,0],
+    opacity:[0,1],
+    duration:1500,
+    easing:'easeOutExpo'
+  })
+  .add({
+    targets:'.hero h1',
+    translateY:[-30,0],
+    opacity:[0,1],
+    duration:1200,
+    easing:'easeOutExpo'
+  }, '-=1000')
+  .add({
+    targets:'.hero p',
+    translateY:[-20,0],
+    opacity:[0,1],
+    duration:1200,
+    easing:'easeOutExpo'
+  }, '-=1000');
+
+  
+  anime({
+    targets:'nav a',
+    translateY:[-20,0],
+    opacity:[0,1],
+    delay: anime.stagger(200),
+    duration:1200,
+    easing:'easeOutElastic(1,.8)'
+  });
+
+
+  function animateOnScroll(el, options = {}) {
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          anime({
+            targets: entry.target,
+            translateY:[50,0],
+            opacity:[0,1],
+            duration: options.duration || 1500,
+            easing: options.easing || 'easeOutExpo',
+            delay: options.delay || 0
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.2});
+    observer.observe(el);
+  }
+
+  document.querySelectorAll('section, .card, h1, p').forEach(el=>animateOnScroll(el,{duration:1500}));
+
+ 
+  anime({
+    targets:'.hero h1, .hero p, .card',
+    textShadow:[
+      {value:'0 0 20px #38bdf8'},
+      {value:'0 0 40px #facc15'}
+    ],
+    duration:2500,
+    direction:'alternate',
+    loop:true
+  });
+
+});
+</script>
+</body>
+</html>
